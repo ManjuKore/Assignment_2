@@ -1,13 +1,7 @@
-from python:3.6
-
-EXPOSE 5000
-
-WORKDIR /CRUD
-
-COPY db_config.py/CRUD
-
-RUN pip install -r db_config.py
-
-COPY app.py/CRUD
-CMD python app.py
-
+FROM mysql:latest
+ENV MYSQL_ROOT_PASSWORD sql123
+ENV MYSQL_DATABASE user
+ENV MYSQL_USER man 
+ENV MYSQL_PASSWORD sql123
+ADD scripts.sql /docker-entrypoint-initdb.d
+EXPOSE 8080
